@@ -23,3 +23,24 @@ class Loan(models.Model):
 class UserLoan(models.Model):
     user = models.ForeignKey(User, related_name='user_loans', on_delete=models.CASCADE)
     loan = models.ForeignKey(Loan, related_name='loan_users', on_delete=models.CASCADE)
+
+
+class Customer(models.Model):
+    customer_id = models.IntegerField(unique=True)
+    credit_score = models.IntegerField(default=0)
+    monthly_salary = models.FloatField(default=0.0)
+
+    def __str__(self):
+        return f"Customer {self.customer_id}"
+
+class LoanData(models.Model):
+    customer = models.ForeignKey(Customer, on_delete=models.CASCADE)
+    loan_amount = models.FloatField()
+    interest_rate = models.FloatField()
+    tenure = models.IntegerField()
+    emi = models.FloatField(default=0.0)
+    approval = models.BooleanField(default=False)
+    corrected_interest_rate = models.FloatField(default=0.0)
+
+    def __str__(self):
+        return f"LoanData for Customer {self.customer.customer_id}"
