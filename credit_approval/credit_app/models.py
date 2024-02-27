@@ -9,7 +9,6 @@ class User(models.Model):
     phone_number = models.CharField(max_length=20)
     monthly_salary = models.DecimalField(max_digits=15, decimal_places=2)
     approved_limit = models.DecimalField(max_digits=10, decimal_places=2)
-    current_debt = models.DecimalField(max_digits=10, decimal_places=2)
 
 
 class Loan(models.Model):
