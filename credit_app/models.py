@@ -10,7 +10,6 @@ class User(models.Model):
     monthly_salary = models.DecimalField(max_digits=15, decimal_places=2)
     approved_limit = models.DecimalField(max_digits=10, decimal_places=2)
 
-
 class Loan(models.Model):
     loan_id = models.CharField(max_length=20, unique=True)
     loan_amount = models.DecimalField(max_digits=10, decimal_places=2)
@@ -20,3 +19,7 @@ class Loan(models.Model):
     emis_paid_on_time = models.IntegerField(default=0)
     start_date = models.DateField()
     end_date = models.DateField()
+
+class UserLoan(models.Model):
+    user = models.ForeignKey(User, related_name='user_loans', on_delete=models.CASCADE)
+    loan = models.ForeignKey(Loan, related_name='loan_users', on_delete=models.CASCADE)
