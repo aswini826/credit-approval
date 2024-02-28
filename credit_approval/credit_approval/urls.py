@@ -16,13 +16,14 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from credit_app.views import register_customer, check_eligibility,create_loan, view_loans
+from credit_app.views import register_customer, check_eligibility,create_loan, view_loan, view_loan_details
 
 
 urlpatterns = [
     path('register/', register_customer, name='register_customer'),
     path('check-eligibility/', check_eligibility, name='check_eligibility'),
     path('create-loan/', create_loan, name='create_loan'),
-    path('view-loans/<int:customer_id>/', view_loans, name='view_loans'),
+    path('view_loan/<int:customer_id>/', view_loan, name='view_loan'),
+    path('view-loan/<int:loan_id>/', view_loan_details, name='view_loan'),
 
 ]

@@ -19,6 +19,8 @@ class Loan(models.Model):
     emis_paid_on_time = models.IntegerField(default=0)
     start_date = models.DateField()
     end_date = models.DateField()
+    customer = models.ForeignKey(User, related_name='loans', on_delete=models.CASCADE)
+
 
 class UserLoan(models.Model):
     user = models.ForeignKey(User, related_name='user_loans', on_delete=models.CASCADE)
